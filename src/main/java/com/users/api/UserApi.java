@@ -30,13 +30,13 @@ public class UserApi {
     @PostMapping("/consumers/register")
     public ResponseEntity<String> registerUser(@Validated(RegisterGroup.class) @RequestBody UserDTO user) throws UserMSException {
       user.setRole(Role.CONSUMER);
-      return  new ResponseEntity<>(environment.getProperty("UserAPI.User.Registration.Success")+ " "+userService.register(user), HttpStatus.CREATED);
+      return  new ResponseEntity<>(environment.getProperty("UserMSApi.User.Registration.Success")+ " "+userService.register(user), HttpStatus.CREATED);
     }
 
     @PostMapping("/admins/register-staff")
     public ResponseEntity<String> addShelterWorker(@Validated(RegisterGroup.class) @RequestBody UserDTO user) throws UserMSException {
         user.setRole(Role.SHELTER_STAFF);
-        return  new ResponseEntity<>(environment.getProperty("UserAPI.Shelter.Worker.Registration.Success")+" "+userService.register(user), HttpStatus.CREATED);
+        return  new ResponseEntity<>(environment.getProperty("UserMSApi.Shelter.Worker.Registration.Success")+" "+userService.register(user), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
@@ -46,7 +46,7 @@ public class UserApi {
     @PutMapping("/password/update")
     public ResponseEntity<String> updatePassword(@Validated(PasswordUpdateGroup.class) @RequestBody UserDTO user) throws UserMSException {
         userService.updatePassword(user);
-        return  new ResponseEntity<>(environment.getProperty("UserAPI.Password.Update.Successful"),HttpStatus.OK);
+        return  new ResponseEntity<>(environment.getProperty("UserMSApi.Password.Update.Successful"),HttpStatus.OK);
     }
 
 }
