@@ -37,7 +37,7 @@ public class UserDTO {
     @Min(value=1000000000L  ,message = "{phone.invalid}",  groups = {RegisterGroup.class, LoginGroup.class , PasswordUpdateGroup.class})
     private Long phone;
     @NotNull(message = "{password.notnull}" ,groups = {RegisterGroup.class, LoginGroup.class , PasswordUpdateGroup.class})
-    @ValidPassword(message = "password.invalid", groups = {RegisterGroup.class, LoginGroup.class , PasswordUpdateGroup.class})
+    @ValidPassword(message = "{password.invalid}", groups = {RegisterGroup.class, LoginGroup.class , PasswordUpdateGroup.class})
     private String password;
     @Null(message = "{role.null}" ,groups = {RegisterGroup.class})
     @NotNull(message = "{role.notnull}" ,groups = {LoginGroup.class , PasswordUpdateGroup.class})
@@ -48,6 +48,6 @@ public class UserDTO {
     private AddressDTO addressDTO;
     @Null(message = "{newpassword.null}" ,groups = {RegisterGroup.class, LoginGroup.class})
     @NotNull(message = "{newpassword.notnull}" ,groups = { PasswordUpdateGroup.class})
-    @ValidPassword(message = "newpassword.invalid", groups = {PasswordUpdateGroup.class})
+    @ValidPassword(message = "{newpassword.invalid}", groups = {PasswordUpdateGroup.class})
     private String newPassword;
 }
