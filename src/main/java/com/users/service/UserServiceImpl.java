@@ -24,10 +24,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public String register(UserDTO userDTO) throws UserMSException {
         if(userRepository.findByEmailAndRole(userDTO.getEmail(),userDTO.getRole()).isPresent()){
-            throw new UserMSException("service.email.already.used");
+            throw new UserMSException("PetMSService.Email.Already.Used");
         }
         if(userRepository.findByPhoneAndRole(userDTO.getPhone(),userDTO.getRole()).isPresent()){
-            throw new UserMSException("service.phone.already.used");
+            throw new UserMSException("PetMSService.Phone.Already.Used");
         }
         User user=userMapper.toUserEntity(userDTO);
         user.setCreatedAt(LocalDateTime.now());
@@ -40,13 +40,13 @@ public class UserServiceImpl implements UserService{
     public User login(UserDTO userDTO) throws UserMSException {
         User user=null;
         if(userDTO.getPhone()!=null){
-         user=userRepository.findByPhoneAndRole(userDTO.getPhone(),userDTO.getRole()).orElseThrow(() -> new UserMSException("service.phoneNumber.notfound"));
+         user=userRepository.findByPhoneAndRole(userDTO.getPhone(),userDTO.getRole()).orElseThrow(() -> new UserMSException("PetMSService.PhoneNumber.NotFound"));
         }
         else if(userDTO.getEmail()!=null){
-         user=userRepository.findByEmailAndRole(userDTO.getEmail(),userDTO.getRole()).orElseThrow(() -> new UserMSException("service.email.notfound"));
+         user=userRepository.findByEmailAndRole(userDTO.getEmail(),userDTO.getRole()).orElseThrow(() -> new UserMSException("PetMSService.Email.NotFound"));
         }
         if(user==null || ! HashingUtil.matchPassword(userDTO.getPassword(),user.getPasswordHash())){
-          throw new UserMSException("service.password.not.match");
+          throw new UserMSException("PetMSService.Password.Not.Match");
         }
         return user;
     }

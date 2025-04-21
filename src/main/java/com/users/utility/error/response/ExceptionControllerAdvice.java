@@ -22,7 +22,7 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorInfo> exceptionHandler(Exception exception) {
         ErrorInfo error = new ErrorInfo();
-        error.setErrorMessage(environment.getProperty("General.EXCEPTION_MESSAGE"));
+        error.setErrorMessage(environment.getProperty("General.Exception_Message"));
         error.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
         error.setTimestamp(LocalDateTime.now());
         return new ResponseEntity<ErrorInfo>(error, HttpStatus.INTERNAL_SERVER_ERROR);
