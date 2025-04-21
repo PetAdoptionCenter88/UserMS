@@ -46,7 +46,7 @@ public class UserApi {
     @PutMapping("/password/update")
     public ResponseEntity<String> updatePassword(@Validated(PasswordUpdateGroup.class) @RequestBody UserDTO user) throws UserMSException {
         userService.updatePassword(user);
-        return  new ResponseEntity<>(environment.getProperty("UserMSApi.Password.Update.Successful"),HttpStatus.OK);
+        return  new ResponseEntity<>(environment.getProperty("UserMSApi.Password.Update.Success"),HttpStatus.OK);
     }
 
 }
